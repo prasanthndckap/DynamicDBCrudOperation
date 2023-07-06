@@ -1,0 +1,27 @@
+
+button.infotn {
+    width: 163px;
+    height: 50px;
+    border-radius: 13px;
+    background-color: #d99b4b;
+}
+.tasklistbtn{
+    display: flex;
+margin: -83px 0px 27px 650px;
+gap: 20px;
+}
+.btninfodiv {
+    display: flex;
+    gap: 25px;
+    margin: 6px 12px 37px 42px;
+
+}
+
+.projectlist {
+    background-color: #d5600c;
+    width: 116px;
+}
+img.image {
+    width: 170px;
+}
+
