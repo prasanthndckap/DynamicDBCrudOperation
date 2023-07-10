@@ -21,6 +21,7 @@ id int NOT null  AUTO_INCREMENT,
     PRIMARY KEY (id),
     FOREIGN KEY (project_id) REFERENCES projects(id) on delete cascade
 );
+
 select * from tasks where deleted_at and project_id = 16;
 alter table  tasks add COLUMN image varchar(255);
 
@@ -39,3 +40,5 @@ PRIMARY key(id),
 
 -- count query for count deleted database
 -- SELECT COUNT(id) FROM tasks WHERE deleted_at;
+
+insert into assigned (name) values("task");

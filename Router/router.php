@@ -28,33 +28,20 @@ public function routing()
 
             if ($roots['action']) {
                 switch ($roots['action']) {
-                    case 'create':
-                        $this->controller->createProject($_POST,$_FILES);
+                    case 'createtable':
+                        $this->controller->listdb($_POST);
                         break;
-                    case 'projectid':
-                        $this->controller->getProjectinfo($_POST);
+                    case 'tablecreated':
+                        $this->controller->createtable($_POST);
                         break;
-                    case 'gettingprojectid':
-                        $this->controller->gettingprojectid($_POST);
-                    break;
-                    case 'Addtask':
-                        $this->controller->createingtasks($_POST,$_FILES);
+                    case 'viewdb':
+                        $this->controller->viewdb();
+                        break;
 
-//                        $this->controller->tasklist();
-                    case'taskinfo':
-                     $this->controller->taskinfo($_POST);
-                     break;
-                    case 'delete':
-                        $this->controller->deletingTask($_POST);
-                        break;
-                    case 'deletedprojects':
-                        $this->controller->listofdeletedtasks($_POST);
-                        break;
-                    case 'Tasklist':
-                        $this->controller->listedTask($_POST);
-                        break;
+
+
                     default:
-                        $this->controller->projectsList($_POST);
+                        $this->controller->homepage();
 
                 }
 

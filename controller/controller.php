@@ -1,97 +1,58 @@
 <?php
 
-require 'Projectmodel/model.php';
+require 'models/model.php';
 
-class Usercontroller{
+class Usercontroller
+{
     private $Usermodel;
+
     public function __construct()
     {
         $this->Usermodel = new usermodels();
-    }
-    public function createProject($insertproject,$files){
-        try {
-
-            if($insertproject) {
-                if ($insertproject['project_name'] != ""){
-                    $this->Usermodel->insertProject($insertproject['project_name'],$files);
-//                    header("location:/");
-                }
-                else{
-                    echo "please enter the correct input name";
-                }
-
-            }
-            else{
-                require "views/projects/create.php";
-            }
-
-        }
-        catch (PDOException $e){
-            die($e->getMessage());
-
-        }
-
-    }
-    public function gettingprojectid($id){
-        $projectid =$id['projectid'];
-        require "views/projects/createtask.php";
 
     }
 
-    public function createingtasks($post,$files){
-//        $files['image'];
-//        var_dump($files);
-         $this->Usermodel->insertTask($post['Task_name'],$post['Task_description'],$post['projectid'],$files);
-         $this->getProjectinfo($post);
-//        header('location:/');
-}
 
-    public function getProjectinfo($id)
+    public function homepage()
     {
-        $projectid =$id['projectid'];
-        $TotalProject = $this->Usermodel->GetAllProjects();
-        $Totaltasks = $this->Usermodel->Listoftasks($projectid);
-        $countfun = $this->Usermodel->countdeletedTask();
-        echo $countfun;
-        require 'views/projects/index.php';
+//        require " views/projects/createdb.php";
+    }
+    public function viewdb(){
+
+
+        $alldb = $this->Usermodel->ListOfdb();
+        var_dump($alldb);
+
+        require "views/projects/createdb.php";
+    }
+//    public function deleteDatabase(){
+//// asinged the fetch database function in the $dblist varible
+//
+//        $dblist = $this->Usermodel->ListOfdb();
+//        require "views/projects/createdb.php";
+//
+//    }
+    public function listdb(){
+// asinged the fetch database function in the $dblist varible
+
+           $dblist = $this->Usermodel->ListOfdb();
+    require "views/projects/createtable.php";
 
     }
-        public function projectsList(){
-            $TotalProject = $this->Usermodel->GetAllProjects();
-            require "views/projects/index.php";
-    }
-    public function taskinfo($data){
-        $taskid=$data['Task_id'];
-        $Taskdetails = $this->Usermodel->Gettasksinfo($taskid);
 
-        require "views/projects/taskinfo.php";
+    public function  createtable($id){
 
-    }
-    public function listedTask($pro_id){
-        $pro_id = $pro_id['pro_id'];
-        var_dump( $pro_id);
-        $listedTask = $this->Usermodel->Listoftasks( $pro_id);
-        $TotalProject = $this->Usermodel->GetAllProjects();
-//        var_dump($listedTask);
-require "views/projects/index.php";
+//        var_dump($tablename);
+//        var_dump($columname);
+//        var_dump($coulumtype);
+//        var_dump($usedb);
+$this->Usermodel->createtable($id);
+        require "views/projects/createtable.php";
     }
 
-    public function deletingTask($id){
-
-        $this->Usermodel->Deletetask($id['delete_id']);
-        $this->getProjectinfo($id);
-
-    }
-    public function listofdeletedtasks($id)
-    {
-
-        $pro_id  = $id['pro_id'];
-        $TotalProject = $this->Usermodel->GetAllProjects();
-        $TotalDeltasks = $this->Usermodel->DeletedTasklist($pro_id);
-        $countfun = $this->Usermodel->countdeletedTask();
-        require 'views/projects/index.php';
-    }
-
-
+//    public function tablecreated()
+//    {
+//        require "views/projects/createtable.php";
+//
+//    }
 }
-
