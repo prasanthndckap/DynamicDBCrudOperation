@@ -37,11 +37,25 @@ public function routing()
                     case 'viewdb':
                         $this->controller->viewdb();
                         break;
+                    case 'createdb':
+                        $this->controller->createdb();
+                        break;
 
+                        case 'deletedb':
+                             $this->controller->deleteDatabase($_POST);
+                             break;
+                    case 'deletingdb':
+                        $this->controller->deleteingDatabase($_POST);
+                        break;
 
-
+                    case 'TableList':
+                        $this->controller->getTable($_POST);
+                        break;
+                    case 'getcolum':
+                        $this->controller->getColum($_POST);
+                        break;
                     default:
-                        $this->controller->homepage();
+                        $this->controller->listdb();
 
                 }
 

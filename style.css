@@ -16,12 +16,139 @@ gap: 20px;
     margin: 6px 12px 37px 42px;
 
 }
+button.dbname {
+  
+    width: 18%;
+    height: 45px;
+    border-radius: 22px;
+    background-color: #d99b4b;
 
-.projectlist {
-    background-color: #d5600c;
-    width: 116px;
-}
-img.image {
-    width: 170px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
 }
 
+
+
+.AlldbList button {
+    background-color: #04aa9c;
+    border: 1px solid #007380;
+    color: white;
+    font-size: 24px;
+    padding: 38px 26px 66px 17px;
+    cursor: pointer;
+    float: left;
+   
+  }
+  
+  .AlldbList button:not(:last-child) {
+    border-right: none; 
+  }
+  
+  /* Clear floats (clearfix hack) */
+  .AlldbList:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Add a background color on hover */
+    .AlldbList button:hover {
+    background-color: #aa520494;
+  }
+
+  input[type=text] {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  .Createdb {
+    margin-left: 383px;
+
+}
+.dropdb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 35px;
+    margin: 35px 0px 0px 416px;
+ 
+}
+.main{
+    width: 512px;
+    border: 4px solid grey;
+    margin: 81px 0px 20px 291px;
+    padding: 40px 40px 40px 108px;
+    border-radius: 33px;
+    background: #13c5b052;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.main input[type=text] {
+    width: 40%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    box-sizing: content-box;
+}
+.addtable{
+    width: 24%;
+    height: 45px;
+    border-radius: 7px;
+    background-color: #d99b4b;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+select#table {
+    margin-left: 46px;
+}
+select {
+    width: 183px;
+    height: 42px;
+    margin-bottom: 20px;
+}
+
+select#db {   
+    margin-left: 57px;
+}
+select#columtype {
+    margin-left: 5px;
+}
+.btn {
+    display: flex;
+    gap: 184px;
+}
+.makedb{
+
+        width: 84%;
+        height: 56px;
+        border-radius: 7px;
+        font-size: 24px;
+        background-color: #d99b4b;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+}
+label {
+    font-size: 24px;
+}
+.getbutton{
+
+    width: 16%;
+    margin-left: 33px;
+    height: 45px;
+    border-radius: 7px;
+    background-color: #4bd1d9;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+}
+div.column{
+    margin-left: 100px;
+    margin-top: 100px;
+    width: 75%;
+}
+button.dbname {
+    width: 18%;
+    height: 45px;
+    border-radius: 11px;
+    margin-top: -101px;
+    background-color: #d99b4b;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}

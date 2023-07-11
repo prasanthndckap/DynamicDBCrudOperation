@@ -4,11 +4,13 @@ class database
 {
     public $db;
     public function __construct(){
-// get the input value to create  database
+// get the input value  using postmethod to create  database
         $dbname = $_POST['db_name'];
 //echo $dbname;
 
-//        var_dump($dbname);
+
+//if the database exites it will it will work automatically
+//        if not it will create the new database and work
         try {
           $this->db= new PDO
 //          checking the database is_exit
@@ -43,60 +45,79 @@ class database
 
 }
 
-class usermodels extends database{
+class usermodels extends database
+{
 
-    public function  ListOfdb(){
+    public function ListOfdb()
+    {
 //        fetch the all databases
+
         return $this->db->query("show databases")->fetchAll(PDO::FETCH_OBJ);
     }
-    public function createtable($id){
+
+    public function createtable($dbname, $tablename)
+    {
+
+// creating table and inserting id into the table by selected database
 
         try {
-//            $dbname =$table['dbname'];
-//            $table_name=$table['Table_Name'];
-            var_dump($id);
-        $tablename= $id['table_name'];
-//            $columname= $id['ColumName'];
-//            $coulumtype= $id['ColumType'];
-            $usedb= $id['db_name'];
+            $this->db->query("
+         USE $dbname;
+        CREATE TABLE $tablename (
+        id int auto_increment,
+        primary key (id)
+        )");
 
-            $query =("USE '$usedb';
-            create table $tablename(
-                `id` int not null AUTO_INCREMENT,
-                primary key(`id`)
-            );");
+        } catch (PDOException $e) {
 
-            $this->db->query($query);
-            echo "created";
-        }
-        catch (PDOException $e){
+            echo "please enter the correct values";
             die($e->getMessage());
         }
-//
-//        $this->db->query("use ' $usedb';
-//        CREATE TABLE $tablename(
-//  `id` int(11)  NOT NULL AUTO_INCREMENT,
-//
-//  PRIMARY KEY (`id`)");
-//        $result=mysqli_query($this->db, $tablename) or die(mysqli_error($this->db));
-//
-//        if($result){echo "table created";}else{echo "nop";}
-//        }
-//        catch (PDOException $e){
-//            die($e->getMessage());
-//        }
+    }
 
 
 
-//        $table ="CREATE TABLE demotable(
-//  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-//  `myName` varchar(11) DEFAULT NULL,
-//  PRIMARY KEY (`id`)
-//)";
+    public function createColum($dbname, $tablename, $columname, $datatype)
+    {
+//        counting the columname to get count the colum
+        $count = count($columname);
 
-//    }
+//looping the counted values
+        for($i=0;$i<$count;$i++){
+            $this->db->query("
+        USE $dbname;
+        ALTER TABLE $tablename ADD COLUMN $columname[$i] $datatype[$i];
+        ");
+        }
+    }
+
+    public function dropdb($name){
+//     getting the database name and drop the database using drop query
+        $this->db->query("Drop database $name");
+    }
+
+public function gettable($dbname){
+
+    //        selecting the all table from the selected database
+
+return $this->db->query("SELECT table_name
+FROM information_schema.tables
+WHERE table_type='BASE TABLE'
+      AND table_schema = '$dbname'")->fetchAll(PDO::FETCH_OBJ);
+
 }
 
-//catch (PDOException $e){
-//    die($e->getMessage());
+public function getColum($dbname,$tablename){
+
+//        selecting the all columlist from the selected database and table
+
+    return $this->db->query("SELECT `COLUMN_NAME` 
+FROM `INFORMATION_SCHEMA`.`COLUMNS` 
+WHERE `TABLE_SCHEMA`='$dbname' 
+    AND `TABLE_NAME`='$tablename'")->fetchAll(PDO::FETCH_OBJ);
 }
+
+}
+
+
+
